@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     private static GameManager instance;
     [SerializeField] AudioSource aSrc;
     [SerializeField] AudioClip aClip;
+    //[SerializeField] float minX, maxX, minY, maxY;
     public static GameManager Instance { get { return instance; } }
 
     private void Awake()
@@ -30,8 +31,8 @@ public class GameManager : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        StartCoroutine(instantiateCoins(2f));
-        StartCoroutine(instantiateBigCoins(10f));
+        //StartCoroutine(instantiateCoins(2f));
+        //StartCoroutine(instantiateBigCoins(10f));
 
     }
 
@@ -40,11 +41,11 @@ public class GameManager : MonoBehaviour
     {
 
     }
-    IEnumerator instantiateCoins(float timeInterval)
+    /*IEnumerator instantiateCoins(float timeInterval)
     {
         while (true)
         {
-            Instantiate(coinPref, new Vector2(Random.Range(8f, -8f), Random.Range(4f, -4f)), Quaternion.identity);
+            Instantiate(coinPref, new Vector2(Random.Range(minX, maxX), Random.Range(minY, minY)), Quaternion.identity);
             
             yield return new WaitForSeconds(timeInterval);
 
@@ -58,7 +59,7 @@ public class GameManager : MonoBehaviour
             Instantiate(bigCoinPref, new Vector2(Random.Range(8f, -8f), Random.Range(4f, -4f)), Quaternion.identity);
 
         }
-    }
+    }*/
     public void CollectingCoins()
     {
         count++;
@@ -72,5 +73,10 @@ public class GameManager : MonoBehaviour
         scoreText.text = count.ToString();
         aSrc.clip = aClip;
         aSrc.Play();        // play coin sfx on collecting coin
+    }
+
+    public void ApplicationQuit()
+    {
+        Application.Quit();
     }
 }
